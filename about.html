@@ -13,18 +13,19 @@
             --hover-color: #ffcc66;
             --gradient-bg: linear-gradient(125deg, rgba(0,31,63,1) 0.5%, rgba(0,2,4,1) 100%);
         }
-        html {
-            height: 100%;
+        html, body {
+            height: 100%; /* Set fixed height */
+            overflow: hidden; /* Prevent scrolling on the body */
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            height: 100vh;
             color: var(--secondary-color);
-            min-height: 100%;
             background: var(--gradient-bg);
             background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
         }
         header {
             position: relative;
@@ -86,15 +87,50 @@
         }
         .team-section {
             text-align: center;
-            padding: 50px 20px;
+            padding: 20px;
+            flex: 1;
+            overflow: hidden; /* Prevent scrolling past the section */
+            display: flex;
+            flex-direction: column;
         }
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+        
+        /* Updated team container styles for scrolling with hidden scrollbar */
+        .team-container {
             max-width: 1200px;
             margin: 0 auto;
+            overflow: hidden; /* Hide scrollbar */
+            padding: 20px 0;
+            position: relative;
+            flex: 1;
         }
+        
+        .team-scrolling {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            padding: 10px;
+            animation: scroll-team 30s linear infinite;
+        }
+        
+        /* Hide scrollbar for different browsers */
+        .team-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .team-container {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        @keyframes scroll-team {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-220px * 4)); /* Adjust based on card width + gap */
+            }
+        }
+        
         .team-member {
             background: var(--secondary-color);
             color: var(--primary-color);
@@ -103,6 +139,8 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-width: 200px;
+            flex-shrink: 0;
         }
         .team-member:hover {
             transform: scale(1.05);
@@ -130,7 +168,7 @@
         }
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             font-size: 14px;
             color: #dcdcdc;
         }
@@ -173,34 +211,74 @@
     </header>
     <section class="team-section">
         <h2>Meet the Team</h2>
-        <div class="team-grid">
-            <!-- Placeholder profiles -->
-            <div class="team-member">
-                <img src="https://deeptech.doo.ee/assets/neever.jpg" alt="Team Member Photo" class="profile-image">
-                <h3>Neev Lodha</h3>
-                <p>phd in english</p>
+        <div class="team-container">
+            <div class="team-scrolling">
+                <!-- Original team members -->
+                <div class="team-member">
+                    <img src="https://deeptech.doo.ee/assets/neever.jpg" alt="Team Member Photo" class="profile-image">
+                    <h3>Neev Lodha</h3>
+                    <p>phd in english</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                    <h3>[placeholder]</h3>
+                    <p>[placeholder]</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                    <h3>[placeholder]</h3>
+                    <p>[placeholder]</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                    <h3>[placeholder]</h3>
+                    <p>[placeholder]</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                    <h3>[placeholder]</h3>
+                    <p>[placeholder]</p>
+                </div>
+                
+                <!-- Three new team members -->
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                    <h3>New Member 1</h3>
+                    <p>Role Description</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                    <h3>New Member 2</h3>
+                    <p>Role Description</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                    <h3>New Member 3</h3>
+                    <p>Role Description</p>
+                </div>
+                
+                <!-- Duplicate for seamless scrolling -->
+                <div class="team-member">
+                    <img src="https://deeptech.doo.ee/assets/neever.jpg" alt="Team Member Photo" class="profile-image">
+                    <h3>Neev Lodha</h3>
+                    <p>phd in english</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                    <h3>[placeholder]</h3>
+                    <p>[placeholder]</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                    <h3>[placeholder]</h3>
+                    <p>[placeholder]</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                    <h3>[placeholder]</h3>
+                    <p>[placeholder]</p>
+                </div>
             </div>
-            <div class="team-member">
-                <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
-                <h3>[placeholder]</h3>
-                <p>[placeholder]</p>
-            </div>
-            <div class="team-member">
-                <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
-                <h3>[placeholder]</h3>
-                <p>[placeholder]</p>
-            </div>
-            <div class="team-member">
-                <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
-                <h3>[placeholder]</h3>
-                <p>[placeholder]</p>
-            </div>
-            <div class="team-member">
-                <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
-                <h3>[placeholder]</h3>
-                <p>[placeholder]</p>
-            </div>
-            <!-- Add more team members as needed -->
         </div>
     </section>
     <footer>
@@ -222,6 +300,9 @@
         }
 
         setInterval(createBubble, 1000);
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
