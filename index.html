@@ -156,11 +156,11 @@
             bubble.classList.add('bubble');
             document.body.appendChild(bubble);
             
-            let size = Math.random() * 20 + 10;
+            let size = Math.random() * 15 + 10;
             bubble.style.width = `${size}px`;
             bubble.style.height = `${size}px`;
             bubble.style.left = `${Math.random() * window.innerWidth}px`;
-            bubble.style.animationDuration = `${Math.random() * 5 + 3}s`;
+            bubble.style.animationDuration = `${Math.random() * 10 + 3}s`;
             
             setTimeout(() => bubble.remove(), 9000);
         }
