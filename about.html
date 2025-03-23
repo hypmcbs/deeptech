@@ -94,7 +94,7 @@
             flex-direction: column;
         }
         
-        /* Updated team container styles for scrolling with hidden scrollbar */
+        /* Updated team container styles for seamless scrolling */
         .team-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -127,7 +127,7 @@
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(calc(-220px * 4)); /* Adjust based on card width + gap */
+                transform: translateX(calc(-220px * 8)); /* Match exactly to the first 8 cards */
             }
         }
         
@@ -186,7 +186,7 @@
                 transform: translateY(100vh) scale(0.5);
                 opacity: 0;
             }
-            50% {
+            70% {
                 opacity: 1;
             }
             100% {
@@ -213,7 +213,7 @@
         <h2>Meet the Team</h2>
         <div class="team-container">
             <div class="team-scrolling">
-                <!-- Original team members -->
+                <!-- First set of team members -->
                 <div class="team-member">
                     <img src="https://deeptech.doo.ee/assets/neever.jpg" alt="Team Member Photo" class="profile-image">
                     <h3>Neev</h3>
@@ -239,8 +239,6 @@
                     <h3>Tishya</h3>
                     <p>---</p>
                 </div>
-                
-                <!-- Three new team members -->
                 <div class="team-member">
                     <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
                     <h3>Maitreyi</h3>
@@ -256,7 +254,8 @@
                     <h3>Anya Y</h3>
                     <p>---</p>
                 </div>
-
+                
+                <!-- Duplicate the first 8 for seamless looping -->
                 <div class="team-member">
                     <img src="https://deeptech.doo.ee/assets/neever.jpg" alt="Team Member Photo" class="profile-image">
                     <h3>Neev</h3>
