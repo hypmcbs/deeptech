@@ -206,8 +206,21 @@
         <p>&copy; <span id="currentYear"></span> Deep Tech. All rights reserved.</p>
     </footer>
     <script>
-        // Dynamically update the year in the footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            document.body.appendChild(bubble);
+            
+            let size = Math.random() * 15 + 10;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * window.innerWidth}px`;
+            bubble.style.animationDuration = `${Math.random() * 10 + 3}s`;
+            
+            setTimeout(() => bubble.remove(), 9000);
+        }
+
+        setInterval(createBubble, 1000);
     </script>
 </body>
 </html>
