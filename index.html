@@ -6,28 +6,6 @@
     <meta name="description" content="Deep Tech is a cutting-edge technology team focused on innovation and excellence.">
     <title>Deep Tech</title>
     <style>
-        .bubble {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: float 5s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) scale(0.5);
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) scale(1.2);
-                opacity: 0;
-            }
-        }
         :root {
             --primary-color: #001f3f;
             --secondary-color: #ffffff;
@@ -41,6 +19,7 @@
             background: linear-gradient(125deg, rgba(0,31,63,1) 0.5%, rgba(0,2,4,1) 100%);
             color: var(--secondary-color);
             height: 100vh;
+            overflow: hidden;
         }
         header {
             position: relative; /* Set position to relative for the pseudo-element */
@@ -126,6 +105,28 @@
             font-size: 14px;
             color: #dcdcdc;
         }
+        .bubble {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -150,8 +151,6 @@
         <p>&copy; <span id="currentYear"></span> Deep Tech. All rights reserved.</p>
     </footer>
     <script>
-        // Dynamically update the year in the footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
         function createBubble() {
             const bubble = document.createElement('div');
             bubble.classList.add('bubble');
