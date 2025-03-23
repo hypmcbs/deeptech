@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn more about Deep Tech, a cutting-edge technology team focused on innovation and excellence.">
+    <title>About Us - Deep Tech</title>
+    <style>
+        :root {
+            --primary-color: #001f3f;
+            --secondary-color: #ffffff;
+            --accent-color: #00bfff;
+            --hover-color: #ffcc66;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(125deg, rgba(0,31,63,1) 0.5%, rgba(0,2,4,1) 100%);
+            color: var(--secondary-color);
+            height: 100vh;
+        }
+        header {
+            position: relative;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #004080;
+            background: linear-gradient(125deg, rgba(0,31,63,1) 0.5%, rgba(0,2,4,1) 100%);
+            overflow: hidden;
+        }
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://deeptech.doo.ee/assets/circuit-board-7789372_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        header h1,
+        header .nav-links {
+            position: relative;
+            z-index: 1;
+        }
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+        }
+        h1 {
+            font-size: 48px;
+            font-weight: 600;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-size: 18px;
+            transition: color 0.3s ease-in-out;
+        }
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        .about-section {
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .about-section img {
+            max-width: 600px;
+            height: auto;
+            margin-bottom: 20px;
+            border: 2px solid var(--secondary-color);
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 20px auto 0;
+            color: #dcdcdc;
+            max-width: 600px;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 18px;
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: var(--hover-color);
+        }
+        .team-section {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: rgba(0, 31, 63, 0.8);
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .team-member {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-member:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+        }
+        .profile-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+        }
+        .team-member h3 {
+            font-size: 20px;
+            margin: 10px 0;
+            color: var(--primary-color);
+        }
+        .team-member p {
+            font-size: 16px;
+            color: var(--primary-color);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #dcdcdc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://deeptech.doo.ee/#" class="logo">
+            <img src="https://deeptech.doo.ee/assets/deeptek.png" alt="Deep Tech Logo">
+        </a>
+        <h1> Deep Tech</h1>
+        <nav class="nav-links">
+            <a href="https://deeptech.doo.ee/#">Home</a>
+            <a href="about">About</a>
+            <a href="https://deeptech.doo.ee/#">[filler]</a>
+            <a href="contact">Contact</a>
+        </nav>
+    </header>
+    <section class="about-section">
+        <img src="https://via.placeholder.com/600x300?text=About+Deep+Tech" alt="About Us">
+        <p>Our team number is 27369!!</p>
+        <p>We are the best team in the world!</p>
+        <a href="contact" class="btn">Contact Us</a>
+    </section>
+    <section class="team-section">
+        <h2>Meet the Team</h2>
+        <div class="team-grid">
+            <!-- Placeholder profiles -->
+            <div class="team-member">
+                <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                <h3>[placeholder]</h3>
+                <p>[placeholder]</p>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                <h3>[placeholder]</h3>
+                <p>[placeholder]</p>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                <h3>[placeholder]</h3>
+                <p>[placeholder]</p>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                <h3>[placeholder]</h3>
+                <p>[placeholder]</p>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/100" alt="Team Member Photo" class="profile-image">
+                <h3>[placeholder]</h3>
+                <p>[placeholder]</p>
+            </div>
+            <!-- Add more team members as needed -->
+        </div>
+    </section>
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Deep Tech. All rights reserved.</p>
+    </footer>
+    <script>
+        // Dynamically update the year in the footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
