@@ -350,19 +350,20 @@
         
         /* Enhanced bubbles */
         .bubble {
-            position: absolute;
+            position: fixed; /* Change to fixed instead of absolute */
+            bottom: 0; /* Start at bottom of viewport */
             background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(0, 191, 255, 0.1));
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(0, 191, 255, 0.2), 
                         inset 0 0 10px rgba(255, 255, 255, 0.2);
-            animation: float 5s infinite ease-in-out;
+            animation: float-up 15s infinite ease-in-out;
             z-index: 0;
             will-change: transform, opacity; /* Performance optimization */
         }
         
-        @keyframes float {
+        @keyframes float-up {
             0% {
-                transform: translateY(100vh) scale(0.5);
+                transform: translateY(0);
                 opacity: 0;
             }
             10% {
@@ -375,7 +376,7 @@
                 opacity: 0.2;
             }
             100% {
-                transform: translateY(-20vh) scale(1.2);
+                transform: translateY(-100vh);
                 opacity: 0;
             }
         }
