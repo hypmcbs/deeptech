@@ -3,38 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Deep Tech - Reach out to our cutting-edge technology team.">
     <title>Contact Us - Deep Tech</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap');
+        
         :root {
             --primary-color: #001f3f;
             --secondary-color: #ffffff;
             --accent-color: #00bfff;
+            --accent-glow: #80dfff;
+            --hover-color: #ffcc66;
+            --gradient-bg: linear-gradient(135deg, #001f3f 0%, #000913 85%, #000000 100%);
         }
-        html, body {
+        
+        * {
             margin: 0;
             padding: 0;
-            height: 100%;
-            overflow: hidden;
-            height: 100vh;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-image: linear-gradient(125deg, rgba(0,31,63,1) 0.5%, rgba(0,2,4,1) 100%);
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background: var(--gradient-bg);
+            background-attachment: fixed;
             color: var(--secondary-color);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        header {
+            overflow-x: hidden;
             position: relative;
+        }
+        
+        /* Particle overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle fill="#ffffff" opacity="0.05" cx="10" cy="10" r="1" /><circle fill="#ffffff" opacity="0.05" cx="30" cy="40" r="0.5" /><circle fill="#ffffff" opacity="0.05" cx="70" cy="20" r="0.8" /><circle fill="#ffffff" opacity="0.05" cx="50" cy="80" r="0.7" /><circle fill="#ffffff" opacity="0.05" cx="90" cy="60" r="0.5" /></svg>');
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        header {
+            position: fixed; /* Changed from relative to fixed for sticky header */
+            top: 0;
+            left: 0;
+            right: 0;
             padding: 20px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #004080;
-            background: linear-gradient(125deg, rgba(0,31,63,1) 0.5%, rgba(0,2,4,1) 100%);
-            overflow: hidden;
+            border-bottom: 1px solid rgba(0, 64, 128, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(0, 31, 63, 0.7);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 10;
         }
+        
         header::before {
             content: "";
             position: absolute;
@@ -45,129 +74,578 @@
             background-image: url('https://deeptech.doo.ee/assets/circuit-board-7789372_1280.jpg');
             background-size: cover;
             background-position: center;
-            opacity: 0.1;
-            z-index: 0;
+            opacity: 0.08;
+            z-index: -1;
         }
-        header h1,
-        header .nav-links {
-            position: relative;
-            z-index: 1;
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
         }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
         .logo img {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+            border: 2px solid rgba(0, 191, 255, 0.3);
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
         }
+        
+        .logo:hover img {
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.8);
+            border-color: rgba(0, 191, 255, 0.6);
+        }
+        
         h1 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 48px;
-            font-weight: 600;
-            margin: 0;
-            color: var(--secondary-color);
+            font-weight: 700;
+            margin: 0 0 0 20px;
             flex-grow: 1;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+            letter-spacing: 2px;
         }
+        
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 30px;
         }
+        
         .nav-links a {
+            position: relative;
             text-decoration: none;
             color: var(--secondary-color);
             font-size: 18px;
-            transition: color 0.3s ease-in-out;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 8px 0;
         }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
         .nav-links a:hover {
             color: var(--accent-color);
         }
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin: 20px auto 0;
-            color: #dcdcdc;
-            max-width: 600px;
+        
+        .nav-links a:hover::after {
+            width: 100%;
         }
-        .about-section {
+        
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 20;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--secondary-color);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        main {
+            padding-top: 100px; /* Add space for fixed header */
+        }
+        
+        .contact-section {
             text-align: center;
-            padding: 100px 20px;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 180px);
         }
-        .about-section img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-            border: 2px solid #ffffff;
+        
+        .contact-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+            position: relative;
+            display: inline-block;
         }
+        
+        .contact-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+        
+        .contact-section p {
+            font-size: 20px;
+            line-height: 1.6;
+            margin: 0 auto 40px;
+            color: #e0e0e0;
+            max-width: 700px;
+            font-weight: 300;
+        }
+        
+        .form-container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(0, 15, 31, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                        0 0 20px rgba(0, 191, 255, 0.2);
+            border: 1px solid rgba(0, 191, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6),
+                        0 0 25px rgba(0, 191, 255, 0.3);
+        }
+        
+        .form-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            animation: glow 3s infinite;
+        }
+        
+        @keyframes glow {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        
+        .form-placeholder {
+            width: 100%;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--accent-color);
+        }
+        
+        .form-placeholder p {
+            margin-bottom: 10px;
+        }
+        
+        /* Add your Google Form embed here */
+        .google-form {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+        
+        /* Contact info section */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .contact-card {
+            background: rgba(0, 15, 31, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 191, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4),
+                        0 0 15px rgba(0, 191, 255, 0.3);
+        }
+        
+        .contact-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .contact-card p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .contact-card a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-card a:hover {
+            color: var(--accent-glow);
+            text-decoration: underline;
+        }
+        
         footer {
-            margin-top: auto;
             text-align: center;
             padding: 20px;
-            font-size: 14px;
-            color: #dcdcdc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 60px;
-            border-top: 0px solid #004080;
+            background-color: rgba(0, 15, 31, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0, 64, 128, 0.3);
+            position: relative;
+            z-index: 10;
         }
+        
+        footer p {
+            font-size: 14px;
+            color: #a0a0a0;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Enhanced bubbles */
         .bubble {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.3);
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(0, 191, 255, 0.1));
             border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.2), 
+                        inset 0 0 10px rgba(255, 255, 255, 0.2);
             animation: float 5s infinite ease-in-out;
+            z-index: 0;
+            will-change: transform, opacity; /* Performance optimization */
         }
-
+        
         @keyframes float {
             0% {
                 transform: translateY(100vh) scale(0.5);
                 opacity: 0;
             }
+            10% {
+                opacity: 0.2;
+            }
             50% {
-                opacity: 1;
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.2;
             }
             100% {
-                transform: translateY(-10vh) scale(1.2);
+                transform: translateY(-20vh) scale(1.2);
                 opacity: 0;
+            }
+        }
+        
+        /* Glow effect around sections */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform; /* Performance optimization */
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+                margin-left: 10px;
+            }
+            
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(0, 15, 31, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.3s ease;
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-left: 1px solid rgba(0, 64, 128, 0.4);
+                z-index: 15;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 20px;
+            }
+            
+            .contact-section {
+                padding: 40px 20px;
+            }
+            
+            .contact-section h2 {
+                font-size: 28px;
+            }
+            
+            .contact-section p {
+                font-size: 16px;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .google-form {
+                height: 450px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-card {
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="glow" style="top: 20%; left: 10%;"></div>
+    <div class="glow" style="top: 60%; right: 15%;"></div>
+    
     <header>
-        <a href="https://hypmcbs.github.io/deeptech/" class="logo">
+        <a href="https://deeptech-eosin.vercel.app/" class="logo">
             <img src="https://deeptech.doo.ee/assets/deeptek.png" alt="Deep Tech Logo">
         </a>
-        <h1> Deep Tech</h1>
-        <nav class="nav-links">
-            <a href="https://hypmcbs.github.io/deeptech/">Home</a>
-            <a href="https://hypmcbs.github.io/deeptech/about.html">About</a>
-            <a href="https://hypmcbs.github.io/deeptech/error">[filler]</a>
-            <a href="https://hypmcbs.github.io/deeptech/contact.html">Contact</a>
+        <h1>Deep Tech</h1>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav-links" id="nav-links">
+            <a href="https://deeptech-eosin.vercel.app/">Home</a>
+            <a href="https://deeptech-eosin.vercel.app/about.html">About</a>
+            <a href="https://deeptech-eosin.vercel.app/filler">[filler]</a>
+            <a href="https://deeptech-eosin.vercel.app/contact.html">Contact</a>
         </nav>
     </header>
-    <section class="about-section">
-        <img src="https://via.placeholder.com/600x300?text=About+Deep+Tech" alt="Contact Us">
-        <p>contact us at this email :)</p>
-        <p> >:) </p>
-    </section>
-    <footer>
-        <p>&copy; 2025 Deep Tech. All rights reserved.</p>
-    </footer>
-    <script>
-        function createBubble() {
-            const bubble = document.createElement('div');
-            bubble.classList.add('bubble');
-            document.body.appendChild(bubble);
+    
+    <main>
+        <section class="contact-section">
+            <h2>Get in Touch</h2>
+            <p>Have questions about our team or technology? Want to collaborate with us? Fill out the form below and we'll get back to you as soon as possible.</p>
             
-            let size = Math.random() * 15 + 10;
+            <div class="form-container">
+                <!-- Replace the URL in the src attribute with your actual Google Form embed code -->
+                <iframe class="google-form" src="https://docs.google.com/forms/d/e/1FAIpQLSf-KTLjRTLp9ouS51eQxTT_AySxsB7HscikACoYuGW0ShgoNw/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                
+                <!-- Fallback message in case iframe doesn't load -->
+                <div class="form-placeholder" style="display: none;">
+                    <p>Please enable iframes to view our contact form</p>
+                    <p>Alternatively, email us directly at: <a href="mailto:contact@deeptech.team">contact@deeptech.team</a></p>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>Email</h3>
+                    <p>For general inquiries:</p>
+                    <p><a href="mailto:contact@deeptech.team">contact@deeptech.team</a></p>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Social Media</h3>
+                    <p>Follow us for updates:</p>
+                    <p><a href="#" target="_blank">Twitter</a></p>
+                    <p><a href="#" target="_blank">Instagram</a></p>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Location</h3>
+                    <p>Sharon, MA</p>
+                    <p>EEE</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Deep Tech. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Animate hamburger to X
+            const spans = mobileMenu.querySelectorAll('span');
+            spans.forEach(span => span.classList.toggle('active'));
+            
+            if (navLinks.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                
+                const spans = mobileMenu.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+        
+        // Create bubbles with performance optimizations
+        const bubblePool = [];
+        const maxBubbles = 20; // Limit the number of bubbles for performance
+        
+        function createBubble() {
+            // Reuse existing bubbles if we've reached the limit
+            let bubble;
+            
+            if (bubblePool.length >= maxBubbles) {
+                bubble = bubblePool.shift();
+                document.body.appendChild(bubble);
+            } else {
+                bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                document.body.appendChild(bubble);
+                bubblePool.push(bubble);
+            }
+            
+            const size = Math.random() * 40 + 10;
+            const opacity = Math.random() * 0.3 + 0.1;
+            
             bubble.style.width = `${size}px`;
             bubble.style.height = `${size}px`;
             bubble.style.left = `${Math.random() * window.innerWidth}px`;
-            bubble.style.animationDuration = `${Math.random() * 10 + 3}s`;
+            bubble.style.opacity = opacity;
+            bubble.style.animationDuration = `${Math.random() * 15 + 5}s`;
             
-            setTimeout(() => bubble.remove(), 9000);
+            // Use requestAnimationFrame for smoother animations
+            setTimeout(() => {
+                if (bubble.parentNode) {
+                    document.body.removeChild(bubble);
+                    bubblePool.unshift(bubble); // Add back to the pool
+                }
+            }, 20000);
         }
 
-        setInterval(createBubble, 1000);
+        // Create initial bubbles with staggered timing
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => createBubble(), i * 300);
+        }
+        
+        // Create new bubbles at a reasonable rate
+        setInterval(createBubble, 2000);
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Optimized cursor following glow effect with throttling
+        let lastTime = 0;
+        const throttleTime = 30; // ms between updates
+        
+        document.addEventListener('mousemove', (e) => {
+            const currentTime = Date.now();
+            if (currentTime - lastTime < throttleTime) return;
+            
+            lastTime = currentTime;
+            const glows = document.querySelectorAll('.glow');
+            
+            requestAnimationFrame(() => {
+                glows[0].style.transform = `translate(${e.clientX / 20}px, ${e.clientY / 20}px)`;
+                glows[1].style.transform = `translate(${-e.clientX / 30}px, ${-e.clientY / 30}px)`;
+            });
+        });
+        
+        // Check if Google Form loaded properly
+        window.addEventListener('load', function() {
+            const iframe = document.querySelector('.google-form');
+            const placeholder = document.querySelector('.form-placeholder');
+            
+            iframe.addEventListener('error', function() {
+                iframe.style.display = 'none';
+                placeholder.style.display = 'flex';
+            });
+        });
     </script>
 </body>
 </html>
+
