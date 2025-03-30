@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Deep Tech is a cutting-edge technology team focused on innovation and excellence.">
+    <title>Deep Tech</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap');
+        
+        :root {
+            --primary-color: #001f3f;
+            --secondary-color: #ffffff;
+            --accent-color: #00bfff;
+            --accent-glow: #80dfff;
+            --hover-color: #ffcc66;
+            --gradient-bg: linear-gradient(135deg, #001f3f 0%, #000913 85%, #000000 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background: var(--gradient-bg);
+            background-attachment: fixed;
+            color: var(--secondary-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Scroll lock class */
+        body.no-scroll {
+            overflow: hidden;
+            height: 100%;
+            position: fixed;
+            width: 100%;
+        }
+        
+        /* Particle overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle fill="#ffffff" opacity="0.05" cx="10" cy="10" r="1" /><circle fill="#ffffff" opacity="0.05" cx="30" cy="40" r="0.5" /><circle fill="#ffffff" opacity="0.05" cx="70" cy="20" r="0.8" /><circle fill="#ffffff" opacity="0.05" cx="50" cy="80" r="0.7" /><circle fill="#ffffff" opacity="0.05" cx="90" cy="60" r="0.5" /></svg>');
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        header {
+            position: fixed; /* Changed from sticky to fixed for better cross-browser support */
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(0, 64, 128, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(0, 31, 63, 0.7);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://deeptech.doo.ee/assets/circuit-board-7789372_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.08;
+            z-index: -1;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+            border: 2px solid rgba(0, 191, 255, 0.3);
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .logo:hover img {
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.8);
+            border-color: rgba(0, 191, 255, 0.6);
+        }
+        
+        
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin: 0 0 0 20px;
+            flex-grow: 1;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            position: relative;
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 20;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--secondary-color);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        main {
+            padding-top: 100px; /* Add space for fixed header */
+            position: relative; /* Added to ensure bubbles stay within main */
+            min-height: calc(100vh - 100px); /* Ensure main takes up available space */
+            overflow: hidden; /* Contain the bubbles */
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 180px);
+        }
+        
+        .hero img {
+            max-width: 90%;
+            width: 700px;
+            height: auto;
+            margin-bottom: 30px;
+            border-radius: 16px;
+            border: 3px solid rgba(0, 191, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                        0 0 20px rgba(0, 191, 255, 0.3);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .hero img:hover {
+            transform: scale(1.02) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 
+                        0 0 30px rgba(0, 191, 255, 0.4);
+        }
+        
+        .hero p {
+            font-size: 22px;
+            line-height: 1.6;
+            margin: 20px auto 40px;
+            color: #e0e0e0;
+            max-width: 600px;
+            font-weight: 300;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 18px;
+            color: var(--primary-color);
+            font-weight: 500;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color) 180%);
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3), 
+                        0 0 15px rgba(0, 191, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color) 180%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 
+                        0 0 20px rgba(0, 191, 255, 0.5);
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 15, 31, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0, 64, 128, 0.3);
+            position: relative;
+            z-index: 10;
+        }
+        
+        footer p {
+            font-size: 14px;
+            color: #a0a0a0;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Enhanced bubbles - UPDATED */
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(0, 191, 255, 0.1));
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.2), 
+                        inset 0 0 10px rgba(255, 255, 255, 0.2);
+            animation: float 10s infinite ease-in-out;
+            z-index: 0;
+            will-change: transform, opacity; /* Performance optimization */
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 100%) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translate(0, -100%) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        /* Glow effect around sections */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform; /* Performance optimization */
+        }
+        
+        /* Added features section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-card {
+            background: rgba(0, 31, 63, 0.4);
+            border: 1px solid rgba(0, 191, 255, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 191, 255, 0.1) 0%, rgba(0, 0, 0, 0) 50%);
+            z-index: -1;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 
+                        0 0 20px rgba(0, 191, 255, 0.2);
+        }
+        
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+        
+        .feature-card p {
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+                margin-left: 10px;
+            }
+            
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(0, 15, 31, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.3s ease;
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-left: 1px solid rgba(0, 64, 128, 0.4);
+                z-index: 15;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 20px;
+            }
+            
+            .hero {
+                padding: 80px 20px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 16px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow" style="top: 20%; left: 10%;"></div>
+    <div class="glow" style="top: 60%; right: 15%;"></div>
+    
+    <header>
+        <a href="#" class="logo">
+            <img src="https://deeptech.doo.ee/assets/deeptek.png" alt="Deep Tech Logo">
+        </a>
+        <h1>Deep Tech</h1>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav-links" id="nav-links">
+            <a href="https://deeptech-eosin.vercel.app/">Home</a>
+            <a href="https://deeptech-eosin.vercel.app/about.html">About</a>
+            <a href="https://deeptech-eosin.vercel.app/error-page.html">[filler]</a>
+            <a href="https://deeptech-eosin.vercel.app/contact.html">Contact</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <img src="https://via.placeholder.com/600x300?text=Deep+Tech" alt="Deep Tech">
+            <p>outreach stuff</p>
+        </section>
+        
+        <section class="features">
+            <div class="feature-card">
+                <h3>eeeeeeee</h3>
+                <p>eeee</p>
+            </div>
+            <div class="feature-card">
+                <h3>eeeeee</h3>
+                <p>eeee</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Deep Tech. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Variables to store scroll position
+        let scrollPosition = 0;
+        
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Handle scroll locking
+            if (navLinks.classList.contains('active')) {
+                // Store current scroll position
+                scrollPosition = window.pageYOffset;
+                // Add no-scroll class to body
+                document.body.classList.add('no-scroll');
+                // Fix the body at the current scroll position
+                document.body.style.top = `-${scrollPosition}px`;
+            } else {
+                // Remove no-scroll class
+                document.body.classList.remove('no-scroll');
+                // Restore scroll position
+                document.body.style.top = '';
+                window.scrollTo(0, scrollPosition);
+            }
+            
+            // Animate hamburger to X
+            const spans = mobileMenu.querySelectorAll('span');
+            spans.forEach(span => span.classList.toggle('active'));
+            
+            if (navLinks.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                
+                // Restore scroll when menu closes
+                document.body.classList.remove('no-scroll');
+                document.body.style.top = '';
+                window.scrollTo(0, scrollPosition);
+                
+                const spans = mobileMenu.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+        
+        // Create bubbles with performance optimizations - UPDATED
+        const bubblePool = [];
+        const maxBubbles = 20; // Limit the number of bubbles for performance
+        
+        function createBubble() {
+            // Reuse existing bubbles if we've reached the limit
+            let bubble;
+            
+            if (bubblePool.length >= maxBubbles) {
+                bubble = bubblePool.shift();
+                document.querySelector('main').appendChild(bubble);
+            } else {
+                bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                document.querySelector('main').appendChild(bubble);
+                bubblePool.push(bubble);
+            }
+            
+            const size = Math.random() * 40 + 10;
+            const opacity = Math.random() * 0.3 + 0.1;
+            const mainSection = document.querySelector('main');
+            const mainWidth = mainSection.offsetWidth;
+            
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * mainWidth}px`;
+            bubble.style.bottom = '0';
+            bubble.style.opacity = opacity;
+            bubble.style.animationDuration = `${Math.random() * 15 + 5}s`;
+            
+            // Use requestAnimationFrame for smoother animations
+            setTimeout(() => {
+                if (bubble.parentNode) {
+                    document.querySelector('main').removeChild(bubble);
+                    bubblePool.unshift(bubble); // Add back to the pool
+                }
+            }, 20000);
+        }
+
+        // Create initial bubbles with staggered timing
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => createBubble(), i * 300);
+        }
+        
+        // Create new bubbles at a reasonable rate
+        setInterval(createBubble, 3000);
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Optimized cursor following glow effect with throttling
+        let lastTime = 0;
+        const throttleTime = 30; // ms between updates
+        
+        document.addEventListener('mousemove', (e) => {
+            const currentTime = Date.now();
+            if (currentTime - lastTime < throttleTime) return;
+            
+            lastTime = currentTime;
+            const glows = document.querySelectorAll('.glow');
+            
+            requestAnimationFrame(() => {
+                glows[0].style.transform = `translate(${e.clientX / 20}px, ${e.clientY / 20}px)`;
+                glows[1].style.transform = `translate(${-e.clientX / 30}px, ${-e.clientY / 30}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
