@@ -6,7 +6,17 @@
     <meta name="description" content="Deep Tech is a cutting-edge technology team focused on innovation and excellence.">
     <title>Deep Tech</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;700&family=Montserrat:wght@300;400;500;700&display=swap');
+        /* Note: Archetype Van needs to be loaded separately as it's not available on Google Fonts */
+        
+        @font-face {
+            font-family: 'Archetype Van';
+            src: url('https://deeptech.doo.ee/assets/fonts/ArchetypeVan-Regular.woff2') format('woff2'),
+                 url('https://deeptech.doo.ee/assets/fonts/ArchetypeVan-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
         
         :root {
             --primary-color: #001f3f;
@@ -15,6 +25,11 @@
             --accent-glow: #80dfff;
             --hover-color: #ffcc66;
             --gradient-bg: linear-gradient(135deg, #001f3f 0%, #000913 85%, #000000 100%);
+            
+            /* Font family variables */
+            --heading-font: 'Archetype Van', sans-serif;
+            --subheading-font: 'Exo 2', sans-serif;
+            --body-font: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
         }
         
         * {
@@ -25,7 +40,7 @@
         }
         
         body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            font-family: var(--body-font);
             background: var(--gradient-bg);
             background-attachment: fixed;
             color: var(--secondary-color);
@@ -56,7 +71,7 @@
         }
         
         header {
-            position: fixed; /* Changed from sticky to fixed for better cross-browser support */
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
@@ -111,10 +126,8 @@
             border-color: rgba(0, 191, 255, 0.6);
         }
         
-        
-        
         h1 {
-            font-family: 'Orbitron', sans-serif;
+            font-family: var(--heading-font);
             font-size: 48px;
             font-weight: 700;
             margin: 0 0 0 20px;
@@ -140,6 +153,7 @@
             font-weight: 500;
             transition: color 0.3s ease;
             padding: 8px 0;
+            font-family: var(--subheading-font);
         }
         
         .nav-links a::after {
@@ -182,10 +196,10 @@
         }
         
         main {
-            padding-top: 100px; /* Add space for fixed header */
-            position: relative; /* Added to ensure bubbles stay within main */
-            min-height: calc(100vh - 100px); /* Ensure main takes up available space */
-            overflow: hidden; /* Contain the bubbles */
+            padding-top: 100px;
+            position: relative;
+            min-height: calc(100vh - 100px);
+            overflow: hidden;
         }
         
         .hero {
@@ -226,6 +240,7 @@
             max-width: 600px;
             font-weight: 300;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            font-family: var(--body-font);
         }
         
         .btn {
@@ -243,6 +258,7 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            font-family: var(--subheading-font);
         }
         
         .btn::before {
@@ -284,19 +300,20 @@
             color: #a0a0a0;
             margin: 0;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            font-family: var(--body-font);
         }
         
-        /* Enhanced bubbles - UPDATED */
+        /* Enhanced bubbles */
         .bubble {
-            position: fixed; /* Change to fixed instead of absolute */
-            bottom: 0; /* Start at bottom of viewport */
+            position: fixed;
+            bottom: 0;
             background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(0, 191, 255, 0.1));
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(0, 191, 255, 0.2), 
                         inset 0 0 10px rgba(255, 255, 255, 0.2);
             animation: float-up 15s infinite ease-in-out;
             z-index: 0;
-            will-change: transform, opacity; /* Performance optimization */
+            will-change: transform, opacity;
         }
         
         @keyframes float-up {
@@ -328,10 +345,10 @@
             background: radial-gradient(circle, rgba(0, 191, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
             pointer-events: none;
             z-index: 0;
-            will-change: transform; /* Performance optimization */
+            will-change: transform;
         }
         
-        /* Added features section */
+        /* Features section */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -373,7 +390,7 @@
         }
         
         .feature-card h3 {
-            font-family: 'Orbitron', sans-serif;
+            font-family: var(--subheading-font);
             font-size: 24px;
             margin-bottom: 15px;
             color: var(--accent-color);
@@ -382,6 +399,7 @@
         .feature-card p {
             color: #e0e0e0;
             line-height: 1.6;
+            font-family: var(--body-font);
         }
         
         /* Responsive styles */
@@ -553,7 +571,7 @@
             });
         });
         
-        // Create bubbles with performance optimizations - UPDATED
+        // Create bubbles with performance optimizations
         const bubblePool = [];
         const maxBubbles = 20; // Limit the number of bubbles for performance
         
@@ -581,7 +599,7 @@
             bubble.style.height = `${size}px`;
             bubble.style.left = `${Math.random() * window.innerWidth}px`;
             bubble.style.bottom = '0';
-            bubble.style.top = 'auto'; // Clear any top positioning
+            bubble.style.top = 'auto';
             bubble.style.opacity = opacity;
             bubble.style.animationDuration = `${Math.random() * 15 + 5}s`;
             
@@ -592,7 +610,7 @@
             setTimeout(() => {
                 if (bubble.parentNode) {
                     document.body.removeChild(bubble);
-                    bubblePool.unshift(bubble); // Add back to the pool
+                    bubblePool.unshift(bubble);
                 }
             }, 20000);
         }
