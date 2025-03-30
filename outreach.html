@@ -563,30 +563,35 @@
             
             if (bubblePool.length >= maxBubbles) {
                 bubble = bubblePool.shift();
-                document.querySelector('main').appendChild(bubble);
+                document.body.appendChild(bubble);
             } else {
                 bubble = document.createElement('div');
                 bubble.classList.add('bubble');
-                document.querySelector('main').appendChild(bubble);
+                document.body.appendChild(bubble);
                 bubblePool.push(bubble);
             }
             
-            const size = Math.random() * 40 + 10;
+            const size = Math.random() * 15 + 10;
             const opacity = Math.random() * 0.3 + 0.1;
-            const mainSection = document.querySelector('main');
-            const mainWidth = mainSection.offsetWidth;
+            const footer = document.querySelector('footer');
+            const footerRect = footer.getBoundingClientRect();
+            const footerPosition = footerRect.top + window.scrollY;
             
             bubble.style.width = `${size}px`;
             bubble.style.height = `${size}px`;
-            bubble.style.left = `${Math.random() * mainWidth}px`;
+            bubble.style.left = `${Math.random() * window.innerWidth}px`;
             bubble.style.bottom = '0';
+            bubble.style.top = 'auto'; // Clear any top positioning
             bubble.style.opacity = opacity;
             bubble.style.animationDuration = `${Math.random() * 15 + 5}s`;
+            
+            // Position bubbles to start at footer level
+            bubble.style.transform = 'translateY(0)';
             
             // Use requestAnimationFrame for smoother animations
             setTimeout(() => {
                 if (bubble.parentNode) {
-                    document.querySelector('main').removeChild(bubble);
+                    document.body.removeChild(bubble);
                     bubblePool.unshift(bubble); // Add back to the pool
                 }
             }, 20000);
