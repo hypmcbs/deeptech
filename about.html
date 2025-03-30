@@ -188,6 +188,9 @@
         
         main {
             padding-top: 100px; /* Add space for fixed header */
+            position: relative; /* Added to ensure bubbles stay within main */
+            min-height: calc(100vh - 100px); /* Ensure main takes up available space */
+            overflow: hidden; /* Contain the bubbles */
         }
         
         /* Team Section Styling */
