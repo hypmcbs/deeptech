@@ -363,19 +363,20 @@
         
         /* Enhanced bubbles */
         .bubble {
-            position: absolute;
+            position: fixed; /* Change to fixed instead of absolute */
+            bottom: 0; /* Start at bottom of viewport */
             background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(0, 191, 255, 0.1));
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(0, 191, 255, 0.2), 
                         inset 0 0 10px rgba(255, 255, 255, 0.2);
-            animation: float 5s infinite ease-in-out;
+            animation: float-up 15s infinite ease-in-out;
             z-index: 0;
             will-change: transform, opacity; /* Performance optimization */
         }
         
-        @keyframes float {
+        @keyframes float-up {
             0% {
-                transform: translateY(50vh) scale(0.5);
+                transform: translateY(0);
                 opacity: 0;
             }
             10% {
@@ -388,7 +389,7 @@
                 opacity: 0.2;
             }
             100% {
-                transform: translateY(-20vh) scale(1.2);
+                transform: translateY(-100vh);
                 opacity: 0;
             }
         }
@@ -654,12 +655,20 @@
             
             const size = Math.random() * 40 + 10;
             const opacity = Math.random() * 0.3 + 0.1;
+            const footer = document.querySelector('footer');
+            const footerRect = footer.getBoundingClientRect();
+            const footerPosition = footerRect.top + window.scrollY;
             
             bubble.style.width = `${size}px`;
             bubble.style.height = `${size}px`;
             bubble.style.left = `${Math.random() * window.innerWidth}px`;
+            bubble.style.bottom = '0';
+            bubble.style.top = 'auto'; // Clear any top positioning
             bubble.style.opacity = opacity;
             bubble.style.animationDuration = `${Math.random() * 15 + 5}s`;
+            
+            // Position bubbles to start at footer level
+            bubble.style.transform = 'translateY(0)';
             
             // Use requestAnimationFrame for smoother animations
             setTimeout(() => {
@@ -669,12 +678,6 @@
                 }
             }, 20000);
         }
-
-        // Create initial bubbles with staggered timing
-        for (let i = 0; i < 10; i++) {
-            setTimeout(() => createBubble(), i * 300);
-        }
-        
         // Create new bubbles at a reasonable rate
         setInterval(createBubble, 2000);
         
