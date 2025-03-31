@@ -452,7 +452,102 @@
                 grid-template-columns: 1fr;
             }
         }
+            .form-section {
+        padding: 70px 20px;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 20px auto 40px;
+    }
+    
+    .form-container {
+        max-width: 800px;
+        width: 100%;
+        background: rgba(0, 31, 63, 0.4);
+        border: 1px solid rgba(0, 191, 255, 0.2);
+        border-radius: 16px;
+        padding: 40px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 191, 255, 0.2);
+    }
+    
+    .form-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(0, 191, 255, 0.1) 0%, rgba(0, 0, 0, 0) 50%);
+        z-index: -1;
+    }
+    
+    .form-container h2 {
+        font-family: var(--heading-font);
+        font-size: 36px;
+        margin-bottom: 20px;
+        text-align: center;
+        background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+    }
+    
+    .form-container p {
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 30px;
+        color: #e0e0e0;
+    }
+    
+    .google-form-wrapper {
+        position: relative;
+        width: 100%;
+        height: 600px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 3px solid rgba(0, 191, 255, 0.3);
+        box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+        transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .google-form-wrapper:hover {
+        box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+        border-color: rgba(0, 191, 255, 0.6);
+    }
+    
+    #google-form {
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.02);
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .form-container {
+            padding: 30px 20px;
+        }
         
+        .form-container h2 {
+            font-size: 28px;
+        }
+        
+        .form-container p {
+            font-size: 16px;
+        }
+        
+        .google-form-wrapper {
+            height: 500px;
+        }
+    }
         /* Font-face for Archetype Van (you'll need to provide the actual font files) */
         @font-face {
             font-family: 'Archetype Van';
@@ -512,7 +607,17 @@
     <footer>
         <p>&copy; <span id="currentYear"></span> Deep Tech. All rights reserved.</p>
     </footer>
-    
+    <section class="form-section">
+    <div class="form-container">
+        <h2>Contact Us</h2>
+        <p>Have questions or want to learn more? Fill out our form below!</p>
+        <div class="google-form-wrapper">
+            <!-- Replace the src attribute with your actual Google Form embed URL -->
+            <iframe id="google-form" src="https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/viewform?embedded=true" 
+                    frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+    </div>
+    </section>
     <script>
         // Variables to store scroll position
         let scrollPosition = 0;
